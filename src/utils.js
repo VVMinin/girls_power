@@ -10,3 +10,9 @@ export function getRandomColor() {
   }
   return color;
 }
+
+export function getRandomCoords(elementSize) {
+    const x = Math.random() * (window.innerWidth - elementSize);
+    const y = Math.random() * (window.innerHeight - elementSize);
+    return { x, y };
+}
