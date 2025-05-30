@@ -4,11 +4,11 @@ import { StaticMenu } from './menu'
 const menu = new StaticMenu('#menu', { x: 30, y: 30 })
 
 
-menu.add('Функция 1', () => alert('Выполнена Функция 1'))
-menu.add('Функция 2', () => alert('Выполнена Функция 2'))
-menu.add('Функция 3', () => alert('Выполнена Функция 3'))
-menu.add('Функция 4', () => alert('Выполнена Функция 4'))
-menu.add('Функция 5', () => alert('Выполнена Функция 5'))
+menu.add('Случайная фигура', () => console.log('Отличная работа, Лера'))
+menu.add('Случайный фон ', () => console.log('Отличная работа, Лера'))
+menu.add('Аналитика кликов', () => console.log('Отличная работа, Дарина'))
+menu.add('Таймер отсчета', () => console.log('Отличная работа, Настя/Никита?'))
+menu.add('Кастомное сообщение', () => console.log('Отличная работа, Аня'))
 
 
 let isDragging = false
