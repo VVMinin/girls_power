@@ -5,8 +5,8 @@ export class ClicksModule extends Module {
     let counters = { oneClick: 0, doubleClick: 0 };
     let counting = true;
 
-    activationCounting(counters, counting);
-    timer();
+    this.activationCounting(counters, counting);
+    this.timer();
     new Promise((resolve) => {
       setTimeout(() => {
         console.log(counters);
@@ -14,7 +14,7 @@ export class ClicksModule extends Module {
       }, 5000);
     }).then((counters) => {
       counting = false;
-      customAlert(`Вы жмакнули: 
+      this.customAlert(`Вы жмакнули: 
         ${counters.oneClick - counters.doubleClick * 2} раз - одним кликом,
         ${counters.doubleClick} раз - двойным кликом.`);
     });

@@ -1,9 +1,9 @@
-import {Module} from '../core/module'
-import {getRandomColor} from '../utils'
+import { Module } from '../core/module';
+import { getRandomColor } from '../utils';
 
 export class BackgroundModule extends Module {
- trigger() {
-    const randomColor = getRandomColor()
-    parentElement.style.backgroundColor = randomColor
-  }
+    trigger() {
+        const randomColor = getRandomColor();
+        document.body.style.backgroundColor = randomColor;
+    }
 }
