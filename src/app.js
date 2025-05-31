@@ -20,6 +20,11 @@ modules.forEach(module => {
         }
     })
 })
+import { TimerModule } from './modules/timer.module';
+
+const timer = new TimerModule();
+document.body.append(timer.toHTML());
+timer.trigger();
 
 // Additional menu items
 menu.add('Аналитика кликов', () => console.log('Аналитика кликов запущена'))

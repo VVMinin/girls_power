@@ -10,6 +10,25 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    width: 100%;
+    padding: 2rem;
+}
+
+.menu {
+    position: fixed;
+    z-index: 1000;
+    width: 150px;
+    background: #1b1a1a;
+    border-radius: 5px;
+    display: none;
+    list-style: none;
 }
 
 .menu-item {
@@ -22,9 +41,47 @@
 .menu-item:hover {
     background: #f0f0f0;
     cursor: pointer;
-    transform: translateX(2px);
+    transition: background-color .2s ease-in;
+    border-radius: inherit;
 }
 
 .heart {
     pointer-events: none;
 }
+
+.timer-module {
+    font-size: 16px;
+    background-color:cadetblue;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    right: 20px;
+    position: fixed;
+    box-shadow: 0 0 10px green;
+}
+
+.timer-header {
+    margin-bottom: 10px;
+}
+
+.timer-button {
+    background-color: rgb(22, 99, 120);
+    color: white;
+    border-radius: 16px;
+    padding: 5px;
+    border-color: rgb(23, 95, 119);
+    box-shadow: 0 0 2px rgb(23, 95, 119);
+}
+
+.timer-input {
+    border-radius: 3px;
+    padding: 5px 10px;
+    background-color: rgb(238, 253, 255);
+    box-shadow: 0 0 2px rgb(23, 95, 119);
+    outline: none;
+}
+.time-left {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
