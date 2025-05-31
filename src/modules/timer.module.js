@@ -22,6 +22,14 @@ export class TimerModule extends Module {
         $inputElement.value = '';
         // $inputElement.placeholder = 'Введите корректное число';
         $timeLeftElement.textContent = 'Введите корректное число';
+        $timeLeftElement.style.display = 'block';
+        $timeLeftElement.style.color = 'white';
+
+        setTimeout(() => {
+          $timeLeftElement.style.display = 'none';
+          $timeLeftElement.style.color = '';
+        }, 1000);
+
         return 
       } 
       
