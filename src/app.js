@@ -25,7 +25,6 @@ const menu = new ContextMenu('#menu');
 menu.add(new ShapeModule('shape', 'Случайная фигура'));
 menu.add(new BackgroundModule('background', 'Случайный фон'));
 menu.add(new ClicksModule('clicks', 'Аналитика кликов'));
-menu.add(timer);
 menu.add(new MessageModule('message', 'Кастомное сообщение'));
 menu.add(cat);
 
