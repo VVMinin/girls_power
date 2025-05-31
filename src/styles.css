@@ -72,6 +72,11 @@ body {
     box-shadow: 0 0 2px rgb(23, 95, 119);
     outline: none;
 }
+
+.timer-input:focus::placeholder {
+    color: transparent;
+}
+
 .time-left {
     margin-top: 10px;
     font-size: 20px;

@@ -72,7 +72,7 @@ export class TimerModule extends Module {
 
     const $input = document.createElement('input');
     $input.className = 'timer-input';
-    $input.placeholder = 'Введите время';
+    $input.placeholder = 'Введите число';
 
     const $button = document.createElement('button');
     $button.className = 'timer-button';
