@@ -1,23 +1,26 @@
-import { Module } from "../core/module";
-import { timer, activationCounting, customAlert } from "../utils";
+import {Module} from '../core/module'
 
 export class ClicksModule extends Module {
-  trigger() {
-    let counters = { oneClick: 0, doubleClick: 0 };
-    let counting = true;
+    constructor(type, text) {
+        super(type, text)
+    }
 
-    activationCounting(counters, counting);
-    timer();
-    new Promise((resolve) => {
-      setTimeout(() => {
-        console.log(counters);
-        resolve(counters);
-      }, 5000);
-    }).then((counters) => {
-      counting = false;
-      customAlert(`Вы жмакнули: 
-        ${counters.oneClick - counters.doubleClick * 2} раз - одним кликом,
-        ${counters.doubleClick} раз - двойным кликом.`);
-    });
-  }
+    trigger() {
+        let clickCount = 0
+        let timeout
+
+        const clickHandler = () => {
+            clickCount++
+            clearTimeout(timeout)
+            timeout = setTimeout(() => {
+                alert(`Вы сделали ${clickCount} кликов!`)
+                clickCount = 0
+            }, 3000)
+        }
+
+        document.body.addEventListener('click', clickHandler)
+        setTimeout(() => {
+            document.body.removeEventListener('click', clickHandler)
+        }, 10000)
+    }
 }

@@ -1,50 +1,41 @@
-import { Menu } from './core/menu'
+import {Menu} from './core/menu'
 
-export class StaticMenu extends Menu {
-    constructor(selector, position = { x: 20, y: 20 }) {
+export class ContextMenu extends Menu {
+    constructor(selector) {
         super(selector)
-        this.position = position
-        this.items = []
-        this.init()
-    }
+        this.modules = []
 
-    init() {
-        this.el.style.display = 'block'
-        this.el.style.position = 'fixed'
-        this.el.style.left = `${this.position.x}px`
-        this.el.style.top = `${this.position.y}px`
-        this.el.style.zIndex = '10000'
-        this.el.style.cursor = 'pointer'
-        this.el.style.userSelect = 'none'
-    }
+        document.body.addEventListener('contextmenu', (event) => {
+            event.preventDefault()
+            this.open(event.clientX, event.clientY)
+        })
 
-    add(text, callback) {
-        this.items.push({ text, callback })
-        this.render()
-    }
-
-    render() {
-        this.el.innerHTML = `
-      <ul class="menu-list">
-        ${this.items.map(item => `
-          <li class="menu-item" data-type="${item.text.replace(/\s+/g, '-').toLowerCase()}">
-            ${item.text}
-          </li>
-        `).join('')}
-      </ul>
-    `
-
-        this.items.forEach((item, index) => {
-            const menuItem = this.el.querySelector(`[data-type="${item.text.replace(/\s+/g, '-').toLowerCase()}"]`)
-            if (menuItem) {
-                menuItem.addEventListener('click', item.callback)
+        this.el.addEventListener('click', (event) => {
+            const {type} = event.target.dataset
+            if (type) {
+                const module = this.modules.find(m => m.type === type)
+                if (module) {
+                    module.trigger()
+                }
+                this.close()
             }
         })
     }
 
-    move(x, y) {
-        this.position = { x, y }
-        this.el.style.left = `${x}px`
-        this.el.style.top = `${this.position.y}px`
+    open(x, y) {
+        if (this.modules.length) {
+            this.el.style.left = `${x}px`
+            this.el.style.top = `${y}px`
+            this.el.classList.add('open')
+        }
+    }
+
+    close() {
+        this.el.classList.remove('open')
+    }
+
+    add(module) {
+        this.modules.push(module)
+        this.el.insertAdjacentHTML('beforeend', module.toHTML())
     }
 }

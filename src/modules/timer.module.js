@@ -1,4 +1,4 @@
-import { Module } from '../core/module'
+import {Module} from '../core/module'
 
 export class TimerModule extends Module {
   constructor() {
@@ -6,77 +6,37 @@ export class TimerModule extends Module {
   }
 
   trigger() {
-    // Создаем элементы, если их нет
-    if (!document.querySelector('.timer-module')) {
-      document.body.appendChild(this.toHTML())
-    }
+    const duration = prompt('Введите время в секундах:', '10')
+    if (!duration) return
 
-    const $container = document.querySelector('.timer-module')
-    const $title = $container.querySelector('.timer-header')
-    const $input = $container.querySelector('.timer-input')
-    const $button = $container.querySelector('.timer-button')
-    const $timeLeft = $container.querySelector('.time-left')
+    let seconds = parseInt(duration)
+    if (isNaN(seconds)) return
 
-    // Показываем контейнер
-    $container.style.display = 'block'
-    $title.style.display = 'block'
-    $input.style.display = 'block'
-    $button.style.display = 'block'
-    $timeLeft.style.display = 'none'
+    const timerElement = document.createElement('div')
+    timerElement.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      z-index: 1001;
+    `
 
-    $button.onclick = () => {
-      const timeInput = parseInt($input.value)
+    const updateTimer = () => {
+      timerElement.textContent = `Осталось: ${seconds} сек`
+      seconds--
 
-      if (!timeInput || timeInput <= 0) {
-        $timeLeft.style.display = 'block'
-        $timeLeft.textContent = 'Введите корректное число'
-        return
+      if (seconds < 0) {
+        timerElement.textContent = 'Время вышло!'
+        setTimeout(() => timerElement.remove(), 2000)
+      } else {
+        setTimeout(updateTimer, 1000)
       }
-
-      $timeLeft.style.display = 'block'
-      $timeLeft.textContent = `Осталось: ${timeInput} сек`
-      $input.value = ''
-
-      let remainingTime = timeInput
-      const timerId = setInterval(() => {
-        remainingTime--
-
-        if (remainingTime > 0) {
-          $timeLeft.textContent = `Осталось: ${remainingTime} сек`
-        } else {
-          clearInterval(timerId)
-          $timeLeft.textContent = 'Время вышло!'
-          setTimeout(() => {
-            $container.style.display = 'none'
-          }, 2000)
-        }
-      }, 1000)
     }
-  }
 
-  toHTML() {
-    const $container = document.createElement('div')
-    $container.className = 'timer-module'
-    $container.style.display = 'none'
-
-    const $title = document.createElement('h2')
-    $title.className = 'timer-header'
-    $title.textContent = this.text
-
-    const $input = document.createElement('input')
-    $input.className = 'timer-input'
-    $input.type = 'number'
-    $input.placeholder = 'Секунды'
-    $input.min = '1'
-
-    const $button = document.createElement('button')
-    $button.className = 'timer-button'
-    $button.textContent = 'Старт'
-
-    const $timeLeft = document.createElement('div')
-    $timeLeft.className = 'time-left'
-
-    $container.append($title, $input, $button, $timeLeft)
-    return $container
+    document.body.appendChild(timerElement)
+    updateTimer()
   }
 }

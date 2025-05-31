@@ -1,52 +1,15 @@
 import './styles.css'
-import { StaticMenu } from './menu'
-import { ShapeModule } from "./modules/shape.module"
-import { BackgroundModule } from "./modules/background.module"
-import { TimerModule } from "./modules/timer.module"
+import {ContextMenu} from './menu'
+import {ShapeModule} from './modules/shape.module'
+import {MessageModule} from './modules/message.module'
+import {BackgroundModule} from './modules/background.module'
+import {ClicksModule} from './modules/clicks.module'
+import {TimerModule} from './modules/timer.module'
 
-const menu = new StaticMenu('#menu', { x: 30, y: 30 })
+const contextMenu = new ContextMenu('#menu')
 
-// Register modules
-const modules = [
-    new BackgroundModule(),
-    new ShapeModule(),
-    new TimerModule()
-]
-
-modules.forEach(module => {
-    menu.add(module.text, () => {
-        try {
-            module.trigger()
-        } catch (error) {
-            console.error(`Error executing module ${module.type}:`, error)
-        }
-    })
-})
-
-// Additional menu items
-menu.add('Аналитика кликов', () => console.log('Аналитика кликов запущена'))
-menu.add('Кастомное сообщение', () => console.log('Кастомное сообщение создано'))
-
-// Drag and drop implementation
-let isDragging = false
-let offsetX, offsetY
-
-menu.el.addEventListener('mousedown', (e) => {
-    if (e.target.closest('.menu-item')) return
-
-    isDragging = true
-    const rect = menu.el.getBoundingClientRect()
-    offsetX = e.clientX - rect.left
-    offsetY = e.clientY - rect.top
-    menu.el.style.cursor = 'grabbing'
-})
-
-document.addEventListener('mousemove', (e) => {
-    if (!isDragging) return
-    menu.move(e.clientX - offsetX, e.clientY - offsetY)
-})
-
-document.addEventListener('mouseup', () => {
-    isDragging = false
-    menu.el.style.cursor = 'pointer'
-})
+contextMenu.add(new ShapeModule('shape', 'Случайная фигура'))
+contextMenu.add(new MessageModule())
+contextMenu.add(new BackgroundModule('background', 'Случайный фон'))
+contextMenu.add(new ClicksModule('clicks', 'Аналитика кликов'))
+contextMenu.add(new TimerModule())
