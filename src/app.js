@@ -2,13 +2,15 @@ import './styles.css'
 import { StaticMenu } from './menu'
 import { ShapeModule } from "./modules/shape.module"
 import { BackgroundModule } from "./modules/background.module"
+import { TimerModule } from "./modules/timer.module"
 
 const menu = new StaticMenu('#menu', { x: 30, y: 30 })
 
 // Register modules
 const modules = [
     new BackgroundModule(),
-    new ShapeModule()
+    new ShapeModule(),
+    new TimerModule()
 ]
 
 modules.forEach(module => {
@@ -20,15 +22,9 @@ modules.forEach(module => {
         }
     })
 })
-import { TimerModule } from './modules/timer.module';
-
-const timer = new TimerModule();
-document.body.append(timer.toHTML());
-timer.trigger();
 
 // Additional menu items
 menu.add('Аналитика кликов', () => console.log('Аналитика кликов запущена'))
-menu.add('Таймер отсчета', () => console.log('Таймер отсчета запущен'))
 menu.add('Кастомное сообщение', () => console.log('Кастомное сообщение создано'))
 
 // Drag and drop implementation

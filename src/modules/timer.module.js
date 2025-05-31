@@ -1,83 +1,82 @@
-import { Module } from '../core/module';
+import { Module } from '../core/module'
 
 export class TimerModule extends Module {
-  constructor(type, text) {
-    super('timer', 'Таймер');
+  constructor() {
+    super('timer', 'Таймер')
   }
 
   trigger() {
-    const $containerElement = document.querySelector('.timer-module');
-    const $titleElement = document.querySelector('.timer-header');
-    const $inputElement = document.querySelector('.timer-input');
-    const $buttonElement = document.querySelector('.timer-button');
-    const $timeLeftElement = document.querySelector('.time-left');
+    // Создаем элементы, если их нет
+    if (!document.querySelector('.timer-module')) {
+      document.body.appendChild(this.toHTML())
+    }
 
+    const $container = document.querySelector('.timer-module')
+    const $title = $container.querySelector('.timer-header')
+    const $input = $container.querySelector('.timer-input')
+    const $button = $container.querySelector('.timer-button')
+    const $timeLeft = $container.querySelector('.time-left')
 
+    // Показываем контейнер
+    $container.style.display = 'block'
+    $title.style.display = 'block'
+    $input.style.display = 'block'
+    $button.style.display = 'block'
+    $timeLeft.style.display = 'none'
 
-    $buttonElement.addEventListener('click', (event) => {
-      // console.log('click');
-      const timeInput = parseInt($inputElement.value);
-      
+    $button.onclick = () => {
+      const timeInput = parseInt($input.value)
+
       if (!timeInput || timeInput <= 0) {
-        $inputElement.value = '';
-        // $inputElement.placeholder = 'Введите корректное число';
-        $timeLeftElement.textContent = 'Введите корректное число';
-        return 
-      } 
-      
-      
-      $titleElement.style.display = 'block';
-      $timeLeftElement.style.display = 'block';
-      $timeLeftElement.textContent = `Осталось: ${timeInput}`;
-      $inputElement.value = '';
-      
-      let timeSec = timeInput;
+        $timeLeft.style.display = 'block'
+        $timeLeft.textContent = 'Введите корректное число'
+        return
+      }
 
-      let timerId = setInterval(() => {
-            timeSec--;
+      $timeLeft.style.display = 'block'
+      $timeLeft.textContent = `Осталось: ${timeInput} сек`
+      $input.value = ''
 
-            if (timeSec >0) {
-              $timeLeftElement.textContent = `Осталось: ${timeSec} ` ;
-            } else {
-              clearInterval(timerId);
-              $timeLeftElement.textContent = 'Время вышло';
-              setTimeout(() => {
-                $titleElement.style.display = 'none';
-                $timeLeftElement.style.display = 'none';
-              }, 2000);
+      let remainingTime = timeInput
+      const timerId = setInterval(() => {
+        remainingTime--
+
+        if (remainingTime > 0) {
+          $timeLeft.textContent = `Осталось: ${remainingTime} сек`
+        } else {
+          clearInterval(timerId)
+          $timeLeft.textContent = 'Время вышло!'
+          setTimeout(() => {
+            $container.style.display = 'none'
+          }, 2000)
         }
       }, 1000)
-
-    });
+    }
   }
 
-
-
   toHTML() {
-    const $container = document.createElement('div');
-    $container.className = 'timer-module';
+    const $container = document.createElement('div')
+    $container.className = 'timer-module'
+    $container.style.display = 'none'
 
-    const $title = document.createElement('h2');
-    $title.className = 'timer-header';
-    $title.textContent = this.text;
-    $title.style.display = 'none';
+    const $title = document.createElement('h2')
+    $title.className = 'timer-header'
+    $title.textContent = this.text
 
-    const $input = document.createElement('input');
-    $input.className = 'timer-input';
-    $input.placeholder = 'Введите время';
+    const $input = document.createElement('input')
+    $input.className = 'timer-input'
+    $input.type = 'number'
+    $input.placeholder = 'Секунды'
+    $input.min = '1'
 
-    const $button = document.createElement('button');
-    $button.className = 'timer-button';
-    $button.textContent = 'Старт';
+    const $button = document.createElement('button')
+    $button.className = 'timer-button'
+    $button.textContent = 'Старт'
 
-    const $timeLeft = document.createElement('p');
-    $timeLeft.className = 'time-left'; 
-    $timeLeft.textContent = `Осталось: `;
-    $timeLeft.style.display = 'none';
+    const $timeLeft = document.createElement('div')
+    $timeLeft.className = 'time-left'
 
-    $container.append($title, $input, $button, $timeLeft);
-
-    return $container;
-  } 
-
+    $container.append($title, $input, $button, $timeLeft)
+    return $container
+  }
 }

@@ -1,3 +1,4 @@
+/* Основные стили меню */
 #menu {
     background: white;
     border-radius: 8px;
@@ -10,25 +11,6 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-size: 14px;
-    font-family: 'Roboto', sans-serif;
-    height: 100vh;
-    width: 100%;
-    padding: 2rem;
-}
-
-.menu {
-    position: fixed;
-    z-index: 1000;
-    width: 150px;
-    background: #1b1a1a;
-    border-radius: 5px;
-    display: none;
-    list-style: none;
 }
 
 .menu-item {
@@ -36,52 +18,72 @@ body {
     border-radius: 4px;
     transition: all 0.2s ease;
     margin: 2px 0;
+    color: #333;
 }
 
 .menu-item:hover {
     background: #f0f0f0;
     cursor: pointer;
-    transition: background-color .2s ease-in;
-    border-radius: inherit;
 }
 
+/* Стили для сердечек */
 .heart {
     pointer-events: none;
 }
 
+/* Стили для таймера */
 .timer-module {
     font-size: 16px;
-    background-color:cadetblue;
+    background-color: #5f9ea0;
     color: white;
     border-radius: 5px;
-    padding: 10px 20px;
-    right: 20px;
+    padding: 15px;
     position: fixed;
-    box-shadow: 0 0 10px green;
+    top: 20px;
+    right: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    z-index: 1000;
 }
 
 .timer-header {
-    margin-bottom: 10px;
-}
-
-.timer-button {
-    background-color: rgb(22, 99, 120);
-    color: white;
-    border-radius: 16px;
-    padding: 5px;
-    border-color: rgb(23, 95, 119);
-    box-shadow: 0 0 2px rgb(23, 95, 119);
+    margin: 0 0 10px 0;
+    font-size: 18px;
 }
 
 .timer-input {
-    border-radius: 3px;
-    padding: 5px 10px;
-    background-color: rgb(238, 253, 255);
-    box-shadow: 0 0 2px rgb(23, 95, 119);
-    outline: none;
-}
-.time-left {
-    margin-top: 10px;
-    font-size: 20px;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
+.timer-button {
+    width: 100%;
+    padding: 8px;
+    background-color: #2c7873;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.timer-button:hover {
+    background-color: #1f5955;
+}
+
+.time-left {
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Общие стили */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
