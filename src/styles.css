@@ -49,3 +49,40 @@ body {
 @keyframes fadeOut {
     to { opacity: 0; transform: rotate(-45deg) scale(0.5) translateY(-50px); }
 }
+
+.timer-module {
+    font-size: 16px;
+    background-color:cadetblue;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    right: 20px;
+    position: fixed;
+    box-shadow: 0 0 10px green;
+}
+
+.timer-header {
+    margin-bottom: 10px;
+}
+
+.timer-button {
+    background-color: rgb(22, 99, 120);
+    color: white;
+    border-radius: 16px;
+    padding: 5px;
+    border-color: rgb(23, 95, 119);
+    box-shadow: 0 0 2px rgb(23, 95, 119);
+}
+
+.timer-input {
+    border-radius: 3px;
+    padding: 5px 10px;
+    background-color: rgb(238, 253, 255);
+    box-shadow: 0 0 2px rgb(23, 95, 119);
+    outline: none;
+}
+.time-left {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
