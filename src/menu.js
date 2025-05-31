@@ -9,41 +9,42 @@ export class StaticMenu extends Menu {
     }
 
     init() {
-
         this.el.style.display = 'block'
         this.el.style.position = 'fixed'
         this.el.style.left = `${this.position.x}px`
         this.el.style.top = `${this.position.y}px`
         this.el.style.zIndex = '10000'
+        this.el.style.cursor = 'pointer'
+        this.el.style.userSelect = 'none'
     }
 
-
-    open() {}
-    close() {}
-
     add(text, callback) {
-        const item = { text, callback }
-        this.items.push(item)
+        this.items.push({ text, callback })
         this.render()
     }
 
     render() {
-        this.el.innerHTML = this.items.map(item => `
-      <li class="menu-item">
-        ${item.text}
-      </li>
-    `).join('')
+        this.el.innerHTML = `
+      <ul class="menu-list">
+        ${this.items.map(item => `
+          <li class="menu-item" data-type="${item.text.replace(/\s+/g, '-').toLowerCase()}">
+            ${item.text}
+          </li>
+        `).join('')}
+      </ul>
+    `
 
-        this.el.querySelectorAll('.menu-item').forEach((item, index) => {
-            item.addEventListener('click', () => {
-                this.items[index].callback()
-            })
+        this.items.forEach((item, index) => {
+            const menuItem = this.el.querySelector(`[data-type="${item.text.replace(/\s+/g, '-').toLowerCase()}"]`)
+            if (menuItem) {
+                menuItem.addEventListener('click', item.callback)
+            }
         })
     }
 
-
     move(x, y) {
+        this.position = { x, y }
         this.el.style.left = `${x}px`
-        this.el.style.top = `${y}px`
+        this.el.style.top = `${this.position.y}px`
     }
 }

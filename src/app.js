@@ -1,23 +1,42 @@
 import './styles.css'
 import { StaticMenu } from './menu'
+import { ShapeModule } from "./modules/shape.module"
+import { BackgroundModule } from "./modules/background.module"
 
 const menu = new StaticMenu('#menu', { x: 30, y: 30 })
 
+// Register modules
+const modules = [
+    new BackgroundModule(),
+    new ShapeModule()
+]
 
-menu.add('Случайная фигура', () => console.log('Отличная работа, Лера'))
-menu.add('Случайный фон ', () => console.log('Отличная работа, Лера'))
-menu.add('Аналитика кликов', () => console.log('Отличная работа, Дарина'))
-menu.add('Таймер отсчета', () => console.log('Отличная работа, Настя/Никита?'))
-menu.add('Кастомное сообщение', () => console.log('Отличная работа, Аня'))
+modules.forEach(module => {
+    menu.add(module.text, () => {
+        try {
+            module.trigger()
+        } catch (error) {
+            console.error(`Error executing module ${module.type}:`, error)
+        }
+    })
+})
 
+// Additional menu items
+menu.add('Аналитика кликов', () => console.log('Аналитика кликов запущена'))
+menu.add('Таймер отсчета', () => console.log('Таймер отсчета запущен'))
+menu.add('Кастомное сообщение', () => console.log('Кастомное сообщение создано'))
 
+// Drag and drop implementation
 let isDragging = false
 let offsetX, offsetY
 
 menu.el.addEventListener('mousedown', (e) => {
+    if (e.target.closest('.menu-item')) return
+
     isDragging = true
-    offsetX = e.clientX - menu.el.getBoundingClientRect().left
-    offsetY = e.clientY - menu.el.getBoundingClientRect().top
+    const rect = menu.el.getBoundingClientRect()
+    offsetX = e.clientX - rect.left
+    offsetY = e.clientY - rect.top
     menu.el.style.cursor = 'grabbing'
 })
 
