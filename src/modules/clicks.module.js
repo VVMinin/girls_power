@@ -40,10 +40,21 @@ export class ClicksModule extends Module {
   }
 
   timer() {
+    const rootElement = document.querySelector("body");
+
+    const letClick = document.createElement('p')
+    letClick.className = 'let_click'
+    letClick.textContent = 'НАЧИНАЙТЕ КЛИКАТЬ'
+    rootElement.append(letClick)    
+    setTimeout(() => {
+        letClick.remove()
+    }, 1000)
+
+
     const timeCount = document.createElement("p");
     timeCount.className = "timer";
-    const rootElement = document.querySelector("body");
     rootElement.append(timeCount);
+
     let time = 5;
     timeCount.textContent = time;
     const timerPlay = setInterval(() => {
