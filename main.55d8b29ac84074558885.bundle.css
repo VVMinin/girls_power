@@ -1,5 +1,4 @@
 @import url(https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap);
-@import url(https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap);
 * {
     margin: 0;
     padding: 0;
@@ -40,58 +39,6 @@ body {
 .menu .menu-item:hover {
     background: #343434;
 }
-
-@keyframes heartBeat {
-    0% { transform: rotate(-45deg) scale(0); }
-    100% { transform: rotate(-45deg) scale(1); }
-}
-
-@keyframes fadeOut {
-    to { opacity: 0; transform: rotate(-45deg) scale(0.5) translateY(-50px); }
-}
-
-.timer-module {
-    font-size: 16px;
-    background-color:cadetblue;
-    color: white;
-    border-radius: 5px;
-    padding: 10px 20px;
-    right: 20px;
-    position: fixed;
-    box-shadow: 0 0 10px green;
-}
-
-.timer-header {
-    margin-bottom: 10px;
-}
-
-.timer-button {
-    background-color: rgb(22, 99, 120);
-    color: white;
-    border-radius: 16px;
-    padding: 5px;
-    border-color: rgb(23, 95, 119);
-    box-shadow: 0 0 2px rgb(23, 95, 119);
-}
-
-.timer-input {
-    border-radius: 3px;
-    padding: 5px 10px;
-    background-color: rgb(238, 253, 255);
-    box-shadow: 0 0 2px rgb(23, 95, 119);
-    outline: none;
-}
-
-.timer-input:focus::placeholder {
-    color: transparent;
-}
-
-.time-left {
-    margin-top: 10px;
-    font-size: 20px;
-}
-
-
 
 .modal_window_alert {
     position: fixed;
@@ -149,6 +96,61 @@ body {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
     font-weight: bold;
+}
+
+.timer-input:focus::placeholder {
+    color: transparent;
+}
+
+
+@keyframes heartBeat {
+    0% { transform: rotate(-45deg) scale(0); }
+    100% { transform: rotate(-45deg) scale(1); }
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; transform: rotate(-45deg) scale(0.5) translateY(-50px); }
+}
+
+.timer-module {
+    font-size: 16px;
+    background-color:cadetblue;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    right: 20px;
+    position: fixed;
+    box-shadow: 0 0 10px green;
+}
+
+.timer-header {
+    margin-bottom: 10px;
+}
+
+.timer-button {
+    background-color: rgb(22, 99, 120);
+    color: white;
+    border-radius: 16px;
+    padding: 5px;
+    border-color: rgb(23, 95, 119);
+    box-shadow: 0 0 2px rgb(23, 95, 119);
+}
+
+.timer-input {
+    border-radius: 3px;
+    padding: 5px 10px;
+    background-color: rgb(238, 253, 255);
+    box-shadow: 0 0 2px rgb(23, 95, 119);
+    outline: none;
+}
+
+.timer-input:focus::placeholder {
+    color: transparent;
+}
+
+.time-left {
+    margin-top: 10px;
+    font-size: 20px;
 }
 
 
