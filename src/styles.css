@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +9,7 @@
 body {
     font-size: 14px;
     font-family: 'Roboto', sans-serif;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     padding: 2rem;
 }
@@ -40,3 +40,62 @@ body {
 .menu .menu-item:hover {
     background: #343434;
 }
+
+.modal_window_alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background:  #FAD6A5;
+    border: 3px solid #48785dff;
+    z-index: 1000;
+    border-radius: 15px;
+    margin: 15px 15px 0px 15px;
+    width: 300px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center
+}
+
+.message {
+    color: #48785dff;
+    padding: 0px 0px 20px 0px;
+    text-align: center;
+    
+}
+
+.button_close {
+    background: #79a77e;
+    color: #ebe3ba;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+    border: 1px solid rgb(53, 87, 68);
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.button_close:hover {
+    opacity: 0.8;
+    color: #eed5a3;
+    border: 1px solid #48785dff;
+}
+
+.timer {
+    color: #48785dff;
+    font-size: 50px;
+    font-family: 'Montserrat', sans-serif; 
+    text-align: center;
+}
+
+.let_click {
+    color: #e48a66;
+    font-size: 50px;
+    font-family: 'Montserrat', sans-serif; 
+    text-align: center;
+    font-weight: bold;
+}
+
