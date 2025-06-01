@@ -99,6 +99,9 @@ body {
     font-weight: bold;
 }
 
+.timer-input:focus::placeholder {
+    color: transparent;
+}
 
 
 @keyframes heartBeat {
