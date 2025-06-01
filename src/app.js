@@ -29,3 +29,4 @@ menu.add(new MessageModule('message', 'Кастомное сообщение'));
 menu.add(cat);
 
 console.log(menu);
+// console.log(menu);
