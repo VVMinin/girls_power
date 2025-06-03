@@ -40,3 +40,12 @@ body {
 .menu .menu-item:hover {
     background: #343434;
 }
+
+@keyframes heartBeat {
+    0% { transform: rotate(-45deg) scale(0); }
+    100% { transform: rotate(-45deg) scale(1); }
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; transform: rotate(-45deg) scale(0.5) translateY(-50px); }
+}
